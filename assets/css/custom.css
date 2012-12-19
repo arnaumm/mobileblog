@@ -1,0 +1,51 @@
+
+body {
+    margin: 20px auto;
+    background-image:url('http://127.0.0.1/ci_mobile/assets/img/bg.png');
+
+}
+
+div.container { max-width: 960px; font-size: 98%;}
+
+div.span8 { max-width: 630px; }
+
+div.span4 { max-width: 300px; }
+
+div.post {
+
+    border-bottom:1px dotted #bbbbbb;
+    margin-bottom:20px;
+    text-align: justify;
+
+}
+
+div.widget h5 {
+
+    display: block;
+    background: #212121;
+    color: #f1f1f1;
+    text-transform: capitalize;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding: 5px 0px;
+
+}
+
+.widget ul { margin-left: 0px;}
+.widget ul li { list-style: none; font-size: 14px;}
+.widget ul li a { display: block; padding: 5px 0px; color: #888; border-top: 1px dotted #bbb;}
+.widget ul li a:hover { background: #fff; text-decoration: none; /*padding-left: 5px;*/}
+
+div.buttons {
+
+    min-height:40px;
+    padding: 10px 0px;
+
+}
+
+input.add-post, textarea.add-post{
+
+    width: 90%;
+
+}
