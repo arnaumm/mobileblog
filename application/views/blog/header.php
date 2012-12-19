@@ -7,7 +7,7 @@
     <meta name="keywords" content="">
     <meta name="author" content="">
 
-    <title>Mobile blog</title>
+    <title>Mobile games blog</title>
 
     <link href="<?php echo base_url('assets/css/bootstrap.min.css') ?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/css/bootstrap-responsive.min.css') ?>" rel="stylesheet">
@@ -29,7 +29,7 @@
 
 <div class="container">
 
-<h2>Mobile Games Blog</h2>
+<h2><?php echo anchor('/', 'Mobile Games Blog', array('class' => 'title')); ?></h2>
 
     <div id="mobile-slider" class="carousel slide">
         <!-- Carousel items -->

@@ -49,3 +49,9 @@ input.add-post, textarea.add-post{
     width: 90%;
 
 }
+
+a.title { color:#222222; }
+
+a.title:hover { color:#222222; text-decoration:none; }
+
+a.title:visited { color:#222222; text-decoration:none; }

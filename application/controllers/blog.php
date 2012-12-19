@@ -111,6 +111,91 @@ class Blog extends CI_Controller {
 
     }
 
+    public function edit($id) {
+
+        $data = $this->data;
+
+        if (!$this->ion_auth->logged_in())  {
+
+            redirect('auth/login');
+
+        } elseif (!$this->ion_auth->is_admin()) {
+
+            $this->session->set_flashdata('message', 'You are not allowed to modify a post!');
+            redirect('/');
+
+        } else {
+
+            $data['post'] = $this->blog_model->read_post($id);
+
+            $this->load->helper('form');
+            $this->load->library(array('form_validation','session'));
+
+            $data['entry_name'] = array(
+                'name' => 'entry_name',
+                'class' => 'add-post',
+                'maxlenght' => '200',
+                'value' => $data['post'][0]->entry_name,
+            );
+
+            $data['entry_body'] = array(
+                'name' => 'entry_body',
+                'class' => 'add-post',
+                'rows' => '10',
+                'cols' => '50',
+                'value' => $data['post'][0]->entry_body,
+            );
+
+            $data['submit'] = array(
+                'value' => 'Save post!',
+                'class' => 'btn btn-success'
+            );
+
+            $this->form_validation->set_rules('entry_name', 'Title', 'required|xss_clean|max_length[200]');
+            $this->form_validation->set_rules('entry_body', 'Body', 'required|xss_clean');
+
+            if ($this->form_validation->run() == FALSE) {
+
+                $this->load->view('blog/header');
+                $this->load->view('blog/_edit',$data);
+                $this->load->view('blog/template',$data);
+
+            } else {
+
+                $id = $this->input->post('entry_id');
+                $name = $this->input->post('entry_name');
+                $body = $this->input->post('entry_body');
+                $this->blog_model->update_post($id,$name,$body);
+                $this->session->set_flashdata('message', 'Post edited successfully!');
+                redirect('/');
+
+            }
+
+        }
+
+    }
+
+    public function delete($id) {
+
+        if (!$this->ion_auth->logged_in())  {
+
+            redirect('auth/login');
+
+        } elseif (!$this->ion_auth->is_admin()) {
+
+            $this->session->set_flashdata('message', 'You are not allowed to delete a post!');
+            redirect('/');
+
+        } else {
+
+            $this->blog_model->delete_post($id);
+            $this->session->set_flashdata('message', 'Post deleted successfully!');
+            redirect('/');
+
+        }
+
+    }
+
 }
 
 ?>
